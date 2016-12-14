@@ -6,13 +6,12 @@
 package cannonball;
 
 import java.awt.Rectangle;
-import javax.swing.JFrame;
 
 /**
  *
  * @author Emil
  */
-public class Cannonball extends GameObject {
+public class Player extends GameObject{
 
     @Override
     public Rectangle getPosition() {
@@ -23,5 +22,5 @@ public class Cannonball extends GameObject {
     public int getImageNo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }
