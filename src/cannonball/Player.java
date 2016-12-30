@@ -6,21 +6,57 @@
 package cannonball;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 /**
  *
  * @author Emil
  */
-public class Player extends GameObject{
+public class Player extends GameObject {
+
+    public int dx = 0;
+    public int dy = 0;
+    public int currentImage = 0;
+
+    public void update(ArrayList<Ball> balls) {
+        int lastX = position.x;
+        int lastY = position.y;
+
+        position.setBounds(
+                position.x + dx,
+                position.y,
+                position.width,
+                position.height);
+//        for (Ball ball : balls) {
+//            if (ball.position.intersects(position)) {
+//                //ball.setVisibility(true);
+//            }
+//      
+        position.setBounds(position.x,
+                position.y + dy,
+                position.width,
+                position.height);
+        
+        
+//        for (Ball ball : balls) {
+//            if (ball.position.intersects(position)) {
+//                //ball.setVisibility(true);
+//            }
+//        }
+    }
 
     @Override
     public Rectangle getPosition() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return position;
     }
 
     @Override
     public int getImageNo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
-    
+
+    public void update(GameLogic gameLogic) {
+        update(gameLogic.ball);
+    }
+
 }
