@@ -16,8 +16,9 @@ public class Player extends GameObject {
 
     public int dx = 0;
     public int dy = 0;
+    public int angle = 5;
     public int currentImage = 0;
-
+    public int health  = 100;
     public void update(ArrayList<Ball> balls) {
         int lastX = position.x;
         int lastY = position.y;

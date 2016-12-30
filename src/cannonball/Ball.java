@@ -13,11 +13,11 @@ import java.awt.Rectangle;
  */
 public class Ball extends GameObject {
 
-public int dx = 0;
+    public int dx = 0;
     public int dy = 0;    
-
     public int type = 0;
 
+    public int weight = 0;
     public boolean visible = false;
     @Override
     public Rectangle getPosition() {

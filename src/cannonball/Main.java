@@ -32,6 +32,8 @@ public class Main extends JFrame {
         Rectangle r = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         DisplayMode dm = new DisplayMode(800, 600, 16, DisplayMode.REFRESH_RATE_UNKNOWN);
         f.setSize(f.getToolkit().getScreenSize());
+              //  f.setSize(600, 600);
+
          f.setUndecorated(true);
         f.setVisible(true);
         f.setLocationRelativeTo(null);
