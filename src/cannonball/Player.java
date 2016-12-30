@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Emil
  */
-public class Player extends GameObject {
+public class Player extends GameObject  {
 
     public int dx = 0;
     public int dy = 0;
