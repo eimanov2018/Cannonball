@@ -7,13 +7,28 @@ package cannonball;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author Emil
  */
-public class GameLogic {
+public class GameLogic implements Runnable{
+    private Socket socket;
+    private DataOutputStream dos;
+    private DataInputStream dis;
+    private ServerSocket serverSocket;
+
+    private String ip = "localhost";
+    private int port = 22222;
+    private Scanner scanner = new Scanner(System.in);
 
     Player player = new Player();
     Ball ballT = new Ball();
@@ -21,6 +36,15 @@ public class GameLogic {
     ArrayList<GameObject> gameObject = new ArrayList<>();
 
     public GameLogic() {
+        System.out.println("Please input the IP: ");
+		ip = scanner.nextLine();
+		System.out.println("Please input the port: ");
+		port = scanner.nextInt();
+		while (port < 1 || port > 65535) {
+			System.out.println("The port you entered was invalid, please input another port: ");
+			port = scanner.nextInt();
+		}
+        if (!connect()) initializeServer();
         player.position.setBounds(250, 260, 50, 50);
 //        for (Ball ball : ball) {
 //            gameObject.add(ball);
@@ -30,6 +54,31 @@ public class GameLogic {
 
     }
 
+    private boolean connect() {
+		try {
+			socket = new Socket(ip, port);
+			dos = new DataOutputStream(socket.getOutputStream());
+			dis = new DataInputStream(socket.getInputStream());
+//			accepted = true;
+		} catch (IOException e) {
+			System.out.println("Unable to connect to the address: " + ip + ":" + port + " | Starting a server");
+			return false;
+		}
+		System.out.println("Successfully connected to the server.");
+		return true;
+	}
+    
+    private void initializeServer() {
+		try {
+			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		yourTurn = true;
+//		circle = false;
+	}
+    
+    
     public void update() {
         player.update(ball);
 
@@ -85,11 +134,11 @@ public class GameLogic {
                     for (i = 0; i < 30; i++) {
                         ballT.dx = i;
                     }
-                    ballT.dx --;
-                    for (i = 0; i > -30; i--) {
-                        ballT.dy = i;
-                    }
-                    ballT.dy ++;
+//                    ballT.dx --;
+//                    for (i = 0; i > -30; i--) {
+//                        ballT.dy = i;
+//                    }
+//                    ballT.dy ++;
 
                     i = 0;
 //                }
@@ -138,5 +187,11 @@ public class GameLogic {
             }
         }
     };
+
+    @Override
+    public void run() {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
