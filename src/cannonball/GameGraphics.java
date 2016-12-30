@@ -22,6 +22,7 @@ public class GameGraphics extends JPanel {
     Image[] ball;
     Image player;
     Image background;
+    Image opponent;
 
     public GameGraphics() {
         ball = new Image[3];
@@ -31,6 +32,8 @@ public class GameGraphics extends JPanel {
             ball[1] = ImageIO.read(new File("images/ball1.png"));
             ball[2] = ImageIO.read(new File("images/ball2.png"));
             player = ImageIO.read(new File("images/cannon.png"));
+            opponent = ImageIO.read(new File("images/opponent.png"));
+            
         } catch (IOException e) {
             System.out.println("problems loading images" + e.getMessage());
             System.exit(1);
@@ -47,10 +50,12 @@ public class GameGraphics extends JPanel {
         int fromX = 0;
         int toX = 0;
         int imX1 = 0, imY1 = 0, imX2 = 0, imY2 = 0;
+        int c=0;
         for (GameObject gameObject : gameLogic.gameObject) {
             Image draw;
             if (!gameObject.visible) continue;
             if (gameObject instanceof Player) {
+                if(c==0){
                 draw = player;
                 imX1 = 0;
                 imY1 = 0;
@@ -58,6 +63,18 @@ public class GameGraphics extends JPanel {
                 imY2 = draw.getHeight(null);
                 fromX = gameLogic.player.position.x;
                 toX = gameLogic.player.position.x + gameLogic.player.position.width;
+                c++;
+                }
+                else{
+                draw = opponent;
+                imX1 = 0;
+                imY1 = 0;
+                imX2 = draw.getWidth(null);
+                imY2 = draw.getHeight(null);
+                fromX= gameLogic.opponent.position.x;
+                toX = gameLogic.opponent.position.x+gameLogic.opponent.position.width;
+                }
+                
             } else {
                 fromX = gameObject.position.x;
                 toX = gameObject.position.x + gameObject.position.width;
