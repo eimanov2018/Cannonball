@@ -47,9 +47,9 @@ public class GameLogic implements Runnable {
 
     public GameLogic() {
         System.out.println("Please input the IP: ");
-		ip = scanner.nextLine();
+		//ip = scanner.nextLine();
 		System.out.println("Please input the port: ");
-		port = scanner.nextInt();
+		//port = scanner.nextInt();
 		while (port < 1 || port > 65535) {
 			System.out.println("The port you entered was invalid, please input another port: ");
 			port = scanner.nextInt();
@@ -229,20 +229,24 @@ public class GameLogic implements Runnable {
 
             }
             if (code == 44) {
+                if(host)
                 player.angle++;
+                else player.angle--;
                 if(player.angle>9) player.angle=9;
+                else if(player.angle<0) player.angle=0;
                 System.out.println("angle is " + player.angle);
             }
             if (code == 46) {
+                if(host)
                 player.angle--;
+                else player.angle++;
                 if(player.angle<0) player.angle=0;
+                else if(player.angle>9) player.angle=9;
                 System.out.println("angle is " + player.angle);
 
             }
             
             if (code == 40 || code == 83) {
-                // player.stateGame.goingRight = true;
-
                 int i;
                 for (i = 0; i < 20; i++) {
                     player.dy = i;
@@ -251,10 +255,7 @@ public class GameLogic implements Runnable {
 
             }
             if (code == 32) {
-                ballT.position.setBounds(player.position.x + 70,
-                        player.position.y + 15,
-                        player.position.width / 3,
-                        player.position.height / 3);
+                
                 int x=0,y=0;
                 if(player.angle >=8 && player.angle<=9){ x = 6; y = 30;}
                 if(player.angle >=7 && player.angle<8){ x = 9; y = 27;}
@@ -266,10 +267,18 @@ public class GameLogic implements Runnable {
                 if(player.angle >=1 && player.angle<2){x = 27; y = 9;}
                 if(player.angle >=0 && player.angle<1){x = 30; y = 6;}
                if(host){
+                   ballT.position.setBounds(player.position.x + 70,
+                        player.position.y + 15,
+                        player.position.width / 3,
+                        player.position.height / 3);
                     ballT.dx =  x;
                     ballT.dy = -y;
                }
                else {
+                   ballT.position.setBounds(player.position.x - 20,
+                        player.position.y + 15,
+                        player.position.width / 3,
+                        player.position.height / 3);
                     ballT.dx =  -x;
                     ballT.dy =  -y;
                }
@@ -281,8 +290,6 @@ public class GameLogic implements Runnable {
 
             }
             if (code == 39 || code == 68) {
-                //player.stateGame.goingRight = true;
-
                 int i;
                 for (i = 0; i < 20; i++) {
                     player.dx = i;
@@ -302,7 +309,6 @@ public class GameLogic implements Runnable {
     public void run() {
        checkQueue();
        update();
-       
        if(!host&&!accepted){
            listenForServerRequest();
        }

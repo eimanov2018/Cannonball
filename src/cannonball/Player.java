@@ -28,11 +28,19 @@ public class Player extends GameObject  {
                 position.y,
                 position.width,
                 position.height);
-//        for (Ball ball : balls) {
-//            if (ball.position.intersects(position)) {
-//                //ball.setVisibility(true);
-//            }
-//      
+        boolean intersects = false;
+        for (Ball ball : balls) {
+            if (ball.position.intersects(position)) {
+                intersects = true;
+               System.out.println("health nmnmis "+health);
+
+            }
+        }
+      
+        if (intersects) {
+            health-=10;
+            System.out.println("health is "+health);
+        }
         position.setBounds(position.x,
                 position.y + dy,
                 position.width,
@@ -51,11 +59,13 @@ public class Player extends GameObject  {
         return position;
     }
 
+    public String getHealth(){
+        return Integer.toString(health);
+    }
     @Override
     public int getImageNo() {
         return 0;
     }
-
     public void update(GameLogic gameLogic) {
         update(gameLogic.ball);
     }

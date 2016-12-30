@@ -5,8 +5,12 @@
  */
 package cannonball;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -23,6 +27,9 @@ public class GameGraphics extends JPanel {
     Image player;
     Image background;
     Image opponent;
+    private Font smallerFont = new Font("Verdana", Font.BOLD, 20);
+    private String healthPl = null;
+    private String healthOp = null;
 
     public GameGraphics() {
         ball = new Image[3];
@@ -46,6 +53,8 @@ public class GameGraphics extends JPanel {
         g.drawImage(background,
                     0, 0, g.getClipBounds().width, g.getClipBounds().height,
                     0, 0, background.getWidth(null), background.getHeight(null), null);
+        
+        g.setFont(smallerFont);
         
         int fromX = 0;
         int toX = 0;
@@ -91,6 +100,14 @@ public class GameGraphics extends JPanel {
                     imX1, imY1, imX2, imY2,
                     null
             );
+            healthPl = gameLogic.player.getHealth();
+            healthOp = gameLogic.opponent.getHealth();
+            g.setColor(Color.RED);
+            Graphics2D g2 = (Graphics2D) g;
+            int stringWidth = g2.getFontMetrics().stringWidth(healthOp);
+            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            g.drawString(healthOp, getToolkit().getScreenSize().width-stringWidth, 30);
+            g.drawString(healthPl, 0, 30);
         }
     }
 }
