@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public class Player extends GameObject  {
 
