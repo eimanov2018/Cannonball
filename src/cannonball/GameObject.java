@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public abstract class GameObject {
 

@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public class Main extends JFrame {
 

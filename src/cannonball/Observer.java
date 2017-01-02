@@ -7,7 +7,7 @@ package cannonball;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public interface Observer {
     

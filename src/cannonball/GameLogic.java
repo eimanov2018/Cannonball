@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public class GameLogic implements Runnable {
 
@@ -58,7 +58,7 @@ public class GameLogic implements Runnable {
             initializeServer();
 //           System.out.println("should have initialized the server!!!");
         }
-        player.position.setBounds(250, 500, 50, 50);
+        player.position.setBounds(150, 500, 50, 50);
         opponent.position.setBounds(1250, 500, 50, 50);
 //        for (Ball ball : ball) {
 //            gameObject.add(ball);
@@ -141,7 +141,7 @@ public class GameLogic implements Runnable {
 
     public void update() {
         ball.add(ballT);
-        
+
         player.update(ball);
         opponent.update(ball);
 
@@ -233,10 +233,10 @@ public class GameLogic implements Runnable {
 
             }
             if (code == 44) {
-                 if (player.equals(opponent)) {
-                player.angle--;
+                if (player.equals(opponent)) {
+                    player.angle--;
                 } else {
-                player.angle++;
+                    player.angle++;
                 }
                 if (player.angle > 9) {
                     player.angle = 9;
@@ -247,9 +247,9 @@ public class GameLogic implements Runnable {
             }
             if (code == 46) {
                 if (player.equals(opponent)) {
-                player.angle++;
+                    player.angle++;
                 } else {
-                player.angle--;
+                    player.angle--;
                 }
                 if (player.angle < 0) {
                     player.angle = 0;
@@ -272,43 +272,42 @@ public class GameLogic implements Runnable {
             if (code == 32) {
 
                 int x = 0, y = 0;
-               
-                    if (player.angle >= 8 && player.angle <= 9) {
-                        x = 6;
-                        y = 30;
-                    }
-                    if (player.angle >= 7 && player.angle < 8) {
-                        x = 9;
-                        y = 27;
-                    }
-                    if (player.angle >= 6 && player.angle < 7) {
-                        x = 12;
-                        y = 24;
-                    }
-                    if (player.angle >= 5 && player.angle < 6) {
-                        x = 15;
-                        y = 21;
-                    }
-                    if (player.angle >= 4 && player.angle < 5) {
-                        x = y = 18;
-                    }
-                    if (player.angle >= 3 && player.angle < 4) {
-                        x = 21;
-                        y = 15;
-                    }
-                    if (player.angle >= 2 && player.angle < 3) {
-                        x = 24;
-                        y = 12;
-                    }
-                    if (player.angle >= 1 && player.angle < 2) {
-                        x = 27;
-                        y = 9;
-                    }
-                    if (player.angle >= 0 && player.angle < 1) {
-                        x = 30;
-                        y = 6;
-                    }
-                
+
+                if (player.angle >= 8 && player.angle <= 9) {
+                    x = 6;
+                    y = 30;
+                }
+                if (player.angle >= 7 && player.angle < 8) {
+                    x = 9;
+                    y = 27;
+                }
+                if (player.angle >= 6 && player.angle < 7) {
+                    x = 12;
+                    y = 24;
+                }
+                if (player.angle >= 5 && player.angle < 6) {
+                    x = 15;
+                    y = 21;
+                }
+                if (player.angle >= 4 && player.angle < 5) {
+                    x = y = 18;
+                }
+                if (player.angle >= 3 && player.angle < 4) {
+                    x = 21;
+                    y = 15;
+                }
+                if (player.angle >= 2 && player.angle < 3) {
+                    x = 24;
+                    y = 12;
+                }
+                if (player.angle >= 1 && player.angle < 2) {
+                    x = 27;
+                    y = 9;
+                }
+                if (player.angle >= 0 && player.angle < 1) {
+                    x = 30;
+                    y = 6;
+                }
 
                 if (player.equals(opponent)) {
                     System.out.println("player shoots");
@@ -319,8 +318,8 @@ public class GameLogic implements Runnable {
                             player.position.height / 3);
                     ballT.dx = -x;
                     ballT.dy = -y;
-                    System.out.println("This player's health: "+this.player.getHealth()+" the other's : "+this.opponent.getHealth());
-                } else  {
+                    System.out.println("This player's health: " + this.player.getHealth() + " the other's : " + this.opponent.getHealth());
+                } else {
                     System.out.println("opponent shoots");
                     ballT.position.setBounds(player.position.x + 70,
                             player.position.y + 15,
@@ -328,7 +327,7 @@ public class GameLogic implements Runnable {
                             player.position.height / 3);
                     ballT.dx = x;
                     ballT.dy = -y;
-                    System.out.println("This player's health: "+this.player.getHealth()+" the other's : "+this.opponent.getHealth());
+                    System.out.println("This player's health: " + this.player.getHealth() + " the other's : " + this.opponent.getHealth());
 
                 }
 

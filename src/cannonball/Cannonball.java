@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public class Cannonball extends GameObject {
 

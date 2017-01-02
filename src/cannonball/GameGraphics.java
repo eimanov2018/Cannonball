@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Emil
+ * @author Emil, Konul, Leyla, Safura
  */
 public class GameGraphics extends JPanel {
 
@@ -34,14 +34,15 @@ public class GameGraphics extends JPanel {
     private String healthOp = null;
 
     public GameGraphics() {
-        ball = new Image[3];
+        ball = new Image[4];
         try {
             opponentWin = ImageIO.read(new File("images/opponentWin.png"));
-            playerWin = ImageIO.read(new File("images/playerWin.jpg"));
+            playerWin = ImageIO.read(new File("images/playerWin.png"));
             background = ImageIO.read(new File("images/background.png"));
             ball[0] = ImageIO.read(new File("images/ball.png"));
             ball[1] = ImageIO.read(new File("images/ball1.png"));
             ball[2] = ImageIO.read(new File("images/ball2.png"));
+            ball[3] = ImageIO.read(new File("images/ball3.png"));
             player = ImageIO.read(new File("images/cannon.png"));
             opponent = ImageIO.read(new File("images/opponent.png"));
 
